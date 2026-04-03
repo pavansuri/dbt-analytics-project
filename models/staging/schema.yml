@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Cleaned and standardized customers data from raw source"
+    columns:
+      - name: customer_id
+        description: "Primary key - unique identifier for each customer"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    description: "Cleaned and standardized orders data from raw source"
+    columns:
+      - name: order_id
+        description: "Primary key - unique identifier for each order"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key linking to stg_customers"
+        tests:
+          - not_null
+      - name: product_id
+        description: "Foreign key linking to stg_products"
+        tests:
+          - not_null
+
+  - name: stg_products
+    description: "Cleaned and standardized products data from raw source"
+    columns:
+      - name: product_id
+        description: "Primary key - unique identifier for each product"
+        tests:
+          - unique
+          - not_null
